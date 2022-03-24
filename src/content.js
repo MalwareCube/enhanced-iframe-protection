@@ -125,7 +125,7 @@ function iframeFinder() {
             warningText.style.marginBottom = "15px";
             warningText.style.padding = "0px";
 
-            warningText.style.display = "inline-block";
+            warningText.style.display = "inline-block"; 
 
             //Style URLElement
             urlElement.style.fontFamily = "Arial, Helvetica, sans-serif";
