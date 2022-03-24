@@ -76,6 +76,7 @@ function iframeFinder() {
             //Create Heading and Paragraph and append them
             let warningHeading = document.createElement("h2");
             let warningText = document.createElement("p");
+            let warningText2 = document.createElement("p");
 
             //Format URL (add elipses if too long)
             let warningURL;
@@ -85,23 +86,21 @@ function iframeFinder() {
               warningURL = frame.src;
             }
 
+            //Create URL element
+            let urlElement = document.createElement("span");
+            urlElement.textContent = warningURL;
+            urlElement.title = frame.src
+
             let warningAccept = document.createElement("button");
             let warningNever = document.createElement("button");
 
-            warningHeading.textContent =
-              "Warning: Potential Security Risk Ahead";
-            warningText.innerHTML =
-              "An iframe element is displaying content from the following URL: <span title='" +
-              frame.src +
-              "' style='font-weight: bold; text-decoration: underline'>" +
-              warningURL +
-              "</span>. <span style='margin-top: 10px; display: block'>Please ensure you trust this URL before entering any sensitive information such as passwords, emails, or credit card details.</span>";
+            warningHeading.textContent = "Warning: Potential Security Risk Ahead";
+            warningText.textContent = "An iframe element is displaying content from the following URL: ";
+            warningText2.textContent = "Please ensure you trust this URL before entering any sensitive information such as passwords, emails, or credit card details.";
 
             warningAccept.textContent = "Close Warning";
-            warningNever.innerHTML =
-              "<span title='" +
-              domain +
-              "'>Never Show Warnings On This Site</span>";
+            warningNever.title = domain
+            warningNever.textContent = "Never Show Warnings On This Site";
 
             //Style Heading H2
             warningHeading.style.fontFamily = "Arial, Helvetica, sans-serif";
@@ -122,8 +121,36 @@ function iframeFinder() {
             warningText.style.fontWeight = "normal";
 
             warningText.style.margin = "0px";
+            warningText.style.marginRight = "5px";
             warningText.style.marginBottom = "15px";
             warningText.style.padding = "0px";
+
+            warningText.style.display = "inline-block";
+
+            //Style URLElement
+            urlElement.style.fontFamily = "Arial, Helvetica, sans-serif";
+            urlElement.style.fontWeight = "bold";
+            urlElement.style.textDecoration = "underline";
+            urlElement.style.color = "white";
+
+            urlElement.style.fontSize = "14px";
+
+            urlElement.style.margin = "0px";
+            urlElement.style.marginBottom = "15px";
+            urlElement.style.padding = "0px";
+
+            urlElement.style.display = "inline-block";
+
+            //Style Parageaph 2 p
+            warningText2.style.fontFamily = "Arial, Helvetica, sans-serif";
+            warningText2.style.color = "white";
+
+            warningText2.style.fontSize = "14px";
+            warningText2.style.fontWeight = "normal";
+
+            warningText2.style.margin = "0px";
+            warningText2.style.marginBottom = "15px";
+            warningText2.style.padding = "0px";
 
             //Style Accept Button
             warningAccept.style.fontFamily = "Arial, Helvetica, sans-serif";
@@ -163,6 +190,8 @@ function iframeFinder() {
             //Append Heading and Paragraph to warning element
             warning.appendChild(warningHeading);
             warning.appendChild(warningText);
+            warning.appendChild(urlElement)
+            warning.appendChild(warningText2)
 
             warning.appendChild(warningAccept);
             warning.appendChild(warningNever);
