@@ -14,7 +14,10 @@ This extension has detected the `iframe` and presented a security warning, highl
 # Installation
 
 - **Mozilla Firefox:** [https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/](https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/)
-- Ports for Chrome, Opera, and Edge are currently in development as they do not use the proposed standard API namespace used by Firefox and Safari
+- **Safari** - In review
+- **Edge** - In review
+- **Opera** - In review
+- **Chrome** - Do I really want to pay the $5 developer account fee?
 
 ## Contributing
 Pull requests are welcome if you see a way to make this extension more efficient and lightweight. For major changes or feature additions, please open an issue first to discuss what you would like to change.
