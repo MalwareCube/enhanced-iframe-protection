@@ -1,0 +1,28 @@
+{
+
+    "manifest_version": 2,
+    "name": "Enhanced iFrame Protection",
+    "version": "1.0.0",
+    "description": "A lightweight extension to automatically detect and provide verbose warnings for embedded iframe elements in order to protect against Browser-In-The-Browser (BITB) attacks.",
+    "author": "@odacavo",
+  
+    "icons": {
+        "16": "/src/icons/icon16.png",
+        "48": "/src/icons/icon48.png",
+        "128": "/src/icons/icon128.png"
+      },
+
+    "permissions": [
+        "storage",
+        "tabs"
+    ],
+  
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["/src/content.js"]
+      }
+    ]
+  
+  }
+  
