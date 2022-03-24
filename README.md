@@ -12,7 +12,9 @@ In the above screenshot, a phishing website has embedded an `iframe` element wit
 This extension has detected the `iframe` and presented a security warning, highlighting the actual phishing domain as (`bigphish.ca`).
 
 # Installation
-Awating approval. :)
+
+- **Mozilla Firefox:** [https://addons.mozilla.org/en-CA/firefox/addon/privacyscreen/](https://addons.mozilla.org/en-CA/firefox/addon/privacyscreen/)
+- Ports for Chrome, Opera, and Edge are currently in development as they do not use the proposed standard API namespace used by Firefox and Safari
 
 ## Contributing
 Pull requests are welcome if you see a way to make this extension more efficient and lightweight. For major changes or feature additions, please open an issue first to discuss what you would like to change.
