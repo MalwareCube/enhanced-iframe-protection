@@ -3,10 +3,6 @@ const r = (Math.random() + 1).toString(36).substring(2);
 const r2 = (Math.random() + 1).toString(36).substring(2);
 const rid = r + r2;
 
-//Cross browser functionality for API
-if (typeof browser === "undefined") {
-  var browser = chrome;
-}
 
 //On load, find all iframes, add styles
 function iframeFinder() {
