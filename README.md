@@ -9,7 +9,7 @@ Enhanced iFrame Protection (EIP) is a lightweight extension to automatically det
 
 In the above screenshot, a phishing website has embedded an `iframe` element within a div that has been styled to look like an actual browser window (with a fake URL bar claiming to be from `accounts.google.com`). 
 
-This extension has detected the `iframe` and presented a security warning, highlighting the actual phishing domain (`bigphish.ca`).
+This extension has detected the `iframe` and presented a security warning, highlighting the actual phishing domain as (`bigphish.ca`).
 
 # Installation
 
