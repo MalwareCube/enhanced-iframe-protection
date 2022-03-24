@@ -14,10 +14,10 @@ This extension has detected the `iframe` and presented a security warning, highl
 # Installation
 
 - **Mozilla Firefox:** [https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/](https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/)
-- **Safari** - In review
+- **Chrome** - Do I really want to pay the $5 developer account fee?
 - **Edge** - In review
 - **Opera** - In review
-- **Chrome** - Do I really want to pay the $5 developer account fee?
+- **Safari** - Their developer enrollment program is far too privacy intrusive
 
 ## Contributing
 Pull requests are welcome if you see a way to make this extension more efficient and lightweight. For major changes or feature additions, please open an issue first to discuss what you would like to change.
