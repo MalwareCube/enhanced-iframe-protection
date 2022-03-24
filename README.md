@@ -13,7 +13,7 @@ This extension has detected the `iframe` and presented a security warning, highl
 
 # Installation
 
-- **Mozilla Firefox:** [https://addons.mozilla.org/en-CA/firefox/addon/privacyscreen/](https://addons.mozilla.org/en-CA/firefox/addon/privacyscreen/)
+- **Mozilla Firefox:** [https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/](https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/)
 - Ports for Chrome, Opera, and Edge are currently in development as they do not use the proposed standard API namespace used by Firefox and Safari
 
 ## Contributing
