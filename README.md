@@ -1,4 +1,4 @@
-![Enhanced iFrame Security Logo](https://github.com/odacavo/enhanced-iframe-security/blob/main/src/icons/icon128.png?raw=true)
+![Enhanced iFrame Security Logo](https://github.com/odacavo/enhanced-iframe-security/blob/main/src/icons/icon48.png?raw=true)
 
 # Enhanced iFrame Protection - Browser Extension
 
