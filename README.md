@@ -17,7 +17,6 @@ This extension has detected the `iframe` and presented a security warning, highl
 - **Chrome** - Pending review
 - [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/enhanced-iframe-protectio/nhagefgjgbhenhbjijbbnbfphjjdbhof)
 - **Opera** - Pending review
-- **Safari** - Their developer enrollment program is far too privacy intrusive
 
 ## Contributing
 Pull requests are welcome if you see a way to make this extension more efficient and lightweight. For major changes or feature additions, please open an issue first to discuss what you would like to change.
