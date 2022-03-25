@@ -13,9 +13,9 @@ This extension has detected the `iframe` and presented a security warning, highl
 
 # Installation
 
-- **Mozilla Firefox:** [https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/](https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/)
+- [Mozilla Firefox](https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/)
 - **Chrome** - Pending review
-- **Edge** - [https://microsoftedge.microsoft.com/addons/detail/enhanced-iframe-protectio/nhagefgjgbhenhbjijbbnbfphjjdbhof](https://microsoftedge.microsoft.com/addons/detail/enhanced-iframe-protectio/nhagefgjgbhenhbjijbbnbfphjjdbhof)
+- [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/enhanced-iframe-protectio/nhagefgjgbhenhbjijbbnbfphjjdbhof)
 - **Opera** - Pending review
 - **Safari** - Their developer enrollment program is far too privacy intrusive
 
