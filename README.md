@@ -14,7 +14,7 @@ This extension has detected the `iframe` and presented a security warning, highl
 # Installation
 
 - [Mozilla Firefox](https://addons.mozilla.org/en-CA/firefox/addon/enhanced-iframe-protection/)
-- **Chrome** - Pending review
+- **Google Chrome** - Pending review
 - [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/enhanced-iframe-protectio/nhagefgjgbhenhbjijbbnbfphjjdbhof)
 - **Opera** - Pending review
 
