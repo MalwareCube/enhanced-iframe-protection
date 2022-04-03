@@ -50,6 +50,7 @@ function iframeFinder() {
 
             //Create Warning Div
             let warning = document.createElement("div");
+            warning.classList.add("warning-" + rid);
 
             //iFrame Styles
             frame.style.filter = "brightness(20%)";
@@ -228,8 +229,10 @@ function iframeFinder() {
             warningNever.addEventListener("click", (e) => {
               e.preventDefault();
 
-              //Remove warning
-              warning.remove();
+              //Remove all warnings
+              document.querySelectorAll("div.warning-" + rid).forEach((warningDiv) => {
+                warningDiv.remove()
+              })
 
               //iFrame Styles
               frame.style.filter = "brightness(100%)";

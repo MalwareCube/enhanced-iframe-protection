@@ -51,11 +51,11 @@ function iframeFinder() {
             //Give it unique ID
             frame.setAttribute("class", rid);
 
-             //Create Warning Div
-             let warning = document.createElement("div");
+            //Create Warning Div
+            let warning = document.createElement("div");
+            warning.classList.add("warning-" + rid);
 
-
-           //iFrame Styles
+            //iFrame Styles
             frame.style.filter = "brightness(20%)";
 
             //Style Warning Div
@@ -233,8 +233,10 @@ function iframeFinder() {
             warningNever.addEventListener("click", (e) => {
               e.preventDefault();
 
-              //Remove warning
-              warning.remove();
+              //Remove all warnings
+              document.querySelectorAll("div.warning-" + rid).forEach((warningDiv) => {
+                warningDiv.remove()
+              })
 
               //iFrame Styles
               frame.style.filter = "brightness(100%)";
