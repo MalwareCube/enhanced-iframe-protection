@@ -219,9 +219,8 @@ function iframeFinder() {
               if (srcAllowResultP) {
                 //Check if entry for frame src exists
                 if (!srcAllowResultP.includes(frame.src)) {
-                  ddcopy = srcAllowResultP;
-                  ddcopy.push(frame.src);
-                  chrome.storage.local.set({ srcAllow: ddcopy });
+                  srcAllowResultP.push(frame.src);
+                  chrome.storage.local.set({ srcAllow: srcAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it
@@ -245,9 +244,8 @@ function iframeFinder() {
               if (domainAllowResultP) {
                 //Check if entry for frame src exists
                 if (!domainAllowResultP.includes(domain)) {
-                  ddcopy = domainAllowResultP;
-                  ddcopy.push(domain);
-                  chrome.storage.local.set({ domainAllow: ddcopy });
+                  domainAllowResultP.push(domain);
+                  chrome.storage.local.set({ domainAllow: domainAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it
