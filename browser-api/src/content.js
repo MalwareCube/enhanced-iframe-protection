@@ -50,6 +50,7 @@ function iframeFinder() {
 
             //Create Warning Div
             let warning = document.createElement("div");
+            warning.classList.add("warning-" + rid);
 
             //iFrame Styles
             frame.style.filter = "brightness(20%)";
@@ -214,9 +215,8 @@ function iframeFinder() {
               if (srcAllowResultP) {
                 //Check if entry for frame src exists
                 if (!srcAllowResultP.includes(frame.src)) {
-                  ddcopy = srcAllowResultP;
-                  ddcopy.push(frame.src);
-                  browser.storage.local.set({ srcAllow: ddcopy });
+                  srcAllowResultP.push(frame.src);
+                  browser.storage.local.set({ srcAllow: srcAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it
@@ -229,8 +229,10 @@ function iframeFinder() {
             warningNever.addEventListener("click", (e) => {
               e.preventDefault();
 
-              //Remove warning
-              warning.remove();
+              //Remove all warnings
+              document.querySelectorAll("div.warning-" + rid).forEach((warningDiv) => {
+                warningDiv.remove()
+              })
 
               //iFrame Styles
               frame.style.filter = "brightness(100%)";
@@ -240,9 +242,8 @@ function iframeFinder() {
               if (domainAllowResultP) {
                 //Check if entry for frame src exists
                 if (!domainAllowResultP.includes(domain)) {
-                  ddcopy = domainAllowResultP;
-                  ddcopy.push(domain);
-                  browser.storage.local.set({ domainAllow: ddcopy });
+                  domainAllowResultP.push(domain);
+                  browser.storage.local.set({ domainAllow: domainAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it

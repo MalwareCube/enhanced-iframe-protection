@@ -22,26 +22,22 @@ function iframeFinder() {
       domainAllowResultP = [];
     }
 
+    //If parent domain is NOT allow-listed
+    if (!domainAllowResultP.includes(domain)) {
 
-  //If parent domain is NOT allow-listed
-  if (!domainAllowResultP.includes(domain)) {
-  
-  //Get src allowlist array, if exists, check if entry exists
-  chrome.storage.local.get('srcAllow', function(srcAllowResult){
-    let srcAllowResultP = srcAllowResult.srcAllow;
+      //Get src allowlist array, if exists, check if entry exists
+      chrome.storage.local.get('srcAllow', function(srcAllowResult){
+        let srcAllowResultP = srcAllowResult.srcAllow;
 
-    //If the result in localStorage doesn't exist, set it to empty array []
-    if (!srcAllowResultP) {
-      srcAllowResultP = [];
-    }
+        //If the result in localStorage doesn't exist, set it to empty array []
+        if (!srcAllowResultP) {
+          srcAllowResultP = [];
+        }
 
-
-    //document.queryselector WHERE IM AT NOW, LINE 50
-
-    document.querySelectorAll("iframe").forEach((frame) => {
-      //If the iframe actually has a src attribute set
-      //AND if the iframe already doesn't have unique ID
-      if (
+        document.querySelectorAll("iframe").forEach((frame) => {
+          //If the iframe actually has a src attribute set
+          //AND if the iframe already doesn't have unique ID
+          if (
             !srcAllowResultP.includes(frame.src) &&
             frame.src &&
             frame.src !== "about:blank" &&
@@ -51,11 +47,11 @@ function iframeFinder() {
             //Give it unique ID
             frame.setAttribute("class", rid);
 
-             //Create Warning Div
-             let warning = document.createElement("div");
+            //Create Warning Div
+            let warning = document.createElement("div");
+            warning.classList.add("warning-" + rid);
 
-
-           //iFrame Styles
+            //iFrame Styles
             frame.style.filter = "brightness(20%)";
 
             //Style Warning Div
@@ -203,8 +199,7 @@ function iframeFinder() {
             //Append warning to document
             document.body.appendChild(warning);
 
-
-           //Event listener for Accept warning button
+            //Event listener for Accept warning button
             warningAccept.addEventListener("click", (e) => {
               e.preventDefault();
 
@@ -219,9 +214,8 @@ function iframeFinder() {
               if (srcAllowResultP) {
                 //Check if entry for frame src exists
                 if (!srcAllowResultP.includes(frame.src)) {
-                  ddcopy = srcAllowResultP;
-                  ddcopy.push(frame.src);
-                  chrome.storage.local.set({ srcAllow: ddcopy });
+                  srcAllowResultP.push(frame.src);
+                  chrome.storage.local.set({ srcAllow: srcAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it
@@ -234,8 +228,10 @@ function iframeFinder() {
             warningNever.addEventListener("click", (e) => {
               e.preventDefault();
 
-              //Remove warning
-              warning.remove();
+              //Remove all warnings
+              document.querySelectorAll("div.warning-" + rid).forEach((warningDiv) => {
+                warningDiv.remove()
+              })
 
               //iFrame Styles
               frame.style.filter = "brightness(100%)";
@@ -245,9 +241,8 @@ function iframeFinder() {
               if (domainAllowResultP) {
                 //Check if entry for frame src exists
                 if (!domainAllowResultP.includes(domain)) {
-                  ddcopy = domainAllowResultP;
-                  ddcopy.push(domain);
-                  chrome.storage.local.set({ domainAllow: ddcopy });
+                  domainAllowResultP.push(domain);
+                  chrome.storage.local.set({ domainAllow: domainAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it
@@ -255,16 +250,10 @@ function iframeFinder() {
                 chrome.storage.local.set({ domainAllow: domainAllowArray });
               }
             });
-
-            } //end of if !srcAllowResultP.incluides(frame.src)
-
-
-    }); // end of forEach frame
-
-  })// end of srcAllow check
-  } //end of if !domainAllowsP.includes(domain)
-
-
+          } //end of if !srcAllowResultP.incluides(frame.src)
+        }); // end of forEach frame
+      })// end of srcAllow check
+    } //end of if !domainAllowsP.includes(domain)
   }); // end of domainAllow check
 }
 
