@@ -3,16 +3,14 @@ const r = (Math.random() + 1).toString(36).substring(2);
 const r2 = (Math.random() + 1).toString(36).substring(2);
 const rid = r + r2;
 
+function fakeUI() {
+  return (document.getElementById('url-bar') !== null);
+}
 
 //On load, find all iframes, add styles
 function iframeFinder() {
-  //Fetch current domain
-  let domain = new URL(document.URL).hostname;
-
-  //If error / empty string, set to blank
-  if (!domain) {
-    domain = "localhost";
-  }
+  // Use origin displayed in the address bar unless its about:blank
+  let domain = (location.origin !== "null") ? location.origin : window.origin;
 
   //Get domainAllow array, if exists, check if domain entry exists
   chrome.storage.local.get('domainAllow', function(domainAllowResult){
@@ -23,7 +21,7 @@ function iframeFinder() {
     }
 
     //If parent domain is NOT allow-listed
-    if (!domainAllowResultP.includes(domain)) {
+    if (domain === "null" || !domainAllowResultP.includes(domain)) {
 
       //Get src allowlist array, if exists, check if entry exists
       chrome.storage.local.get('srcAllow', function(srcAllowResult){
@@ -34,22 +32,27 @@ function iframeFinder() {
           srcAllowResultP = [];
         }
 
-        document.querySelectorAll("iframe").forEach((frame) => {
+        document.querySelectorAll("iframe, frame, embed, object").forEach((frame) => {
+          let src = (frame.nodeName === "OBJECT") ? frame.data : frame.src;
           //If the iframe actually has a src attribute set
           //AND if the iframe already doesn't have unique ID
           if (
-            !srcAllowResultP.includes(frame.src) &&
-            frame.src &&
-            frame.src !== "about:blank" &&
-            frame.src !== "javascript:undefined" &&
+            !srcAllowResultP.includes(src) &&
+            src &&
+            src !== "about:blank" &&
+            src !== "javascript:undefined" &&
             !frame.classList.contains(rid)
           ) {
             //Give it unique ID
             frame.setAttribute("class", rid);
 
             //Create Warning Div
+            let warningHost = document.createElement("div");
+            let warningDOM = warningHost.attachShadow({mode: 'closed'});
             let warning = document.createElement("div");
-            warning.classList.add("warning-" + rid);
+            warningDOM.appendChild(warning);
+            
+            warningHost.classList.add("warning-" + rid);
 
             //iFrame Styles
             frame.style.filter = "brightness(20%)";
@@ -80,21 +83,22 @@ function iframeFinder() {
 
             //Format URL (add elipses if too long)
             let warningURL;
-            if (frame.src.length > 50) {
-              warningURL = frame.src.substring(0, 50) + "...";
+            if (src.length > 50) {
+              warningURL = src.substring(0, 50) + "...";
             } else {
-              warningURL = frame.src;
+              warningURL = src;
             }
 
             //Create URL element
             let urlElement = document.createElement("span");
             urlElement.textContent = warningURL;
-            urlElement.title = frame.src
+            urlElement.title = src
 
             let warningAccept = document.createElement("button");
             let warningNever = document.createElement("button");
 
             warningHeading.textContent = "Warning: Potential Security Risk Ahead";
+            if (fakeUI()) warningHeading.textContent += " (Fake UI)";
             warningText.textContent = "An iframe element is displaying content from the following URL: ";
             warningText2.textContent = "Please ensure you trust this URL before entering any sensitive information such as passwords, emails, or credit card details.";
 
@@ -197,7 +201,7 @@ function iframeFinder() {
             warning.appendChild(warningNever);
 
             //Append warning to document
-            document.body.appendChild(warning);
+            document.body.appendChild(warningHost);
 
             //Event listener for Accept warning button
             warningAccept.addEventListener("click", (e) => {
@@ -213,13 +217,13 @@ function iframeFinder() {
               //Add src URL to whitelist array
               if (srcAllowResultP) {
                 //Check if entry for frame src exists
-                if (!srcAllowResultP.includes(frame.src)) {
-                  srcAllowResultP.push(frame.src);
+                if (!srcAllowResultP.includes(src)) {
+                  srcAllowResultP.push(src);
                   chrome.storage.local.set({ srcAllow: srcAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it
-                let srcAllowArray = [frame.src];
+                let srcAllowArray = [src];
                 chrome.storage.local.set({ srcAllow: srcAllowArray });
               }
             });
@@ -250,7 +254,7 @@ function iframeFinder() {
                 chrome.storage.local.set({ domainAllow: domainAllowArray });
               }
             });
-          } //end of if !srcAllowResultP.incluides(frame.src)
+          } //end of if !srcAllowResultP.incluides(src)
         }); // end of forEach frame
       })// end of srcAllow check
     } //end of if !domainAllowsP.includes(domain)
@@ -273,5 +277,6 @@ var observer = new MutationObserver(function (mutations, observer) {
 observer.observe(document, {
   subtree: true,
   attributes: true,
+  childList: true
 });
 ///////////////////////////////////////////////
