@@ -6,13 +6,8 @@ const rid = r + r2;
 
 //On load, find all iframes, add styles
 function iframeFinder() {
-  //Fetch current domain
-  let domain = location.origin;
-
-  //If error / empty string, set to blank
-  if (!domain) {
-    domain = "localhost";
-  }
+  // Use origin displayed in the address bar unless its about:blank
+  let domain = (location.origin !== "null") ? location.origin : window.origin;
 
   //Get domainAllow array, if exists, check if domain entry exists
   let domainAllow = browser.storage.local.get("domainAllow");
@@ -24,7 +19,7 @@ function iframeFinder() {
     }
 
     //If parent domain is NOT allow-listed
-    if (!domainAllowResultP.includes(domain)) {
+    if (domain === "null" || !domainAllowResultP.includes(domain)) {
       //Get allowlist array, if exists, check if entry exists
       let srcAllow = browser.storage.local.get("srcAllow");
       srcAllow.then((srcAllowResult) => {
