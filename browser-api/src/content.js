@@ -36,13 +36,14 @@ function iframeFinder() {
         }
 
         document.querySelectorAll("iframe, frame, embed, object").forEach((frame) => {
+          let src = (frame.nodeName === "OBJECT") ? frame.data : frame.src;
           //If the iframe actually has a src attribute set
           //AND if the iframe already doesn't have unique ID
           if (
-            !srcAllowResultP.includes(frame.src) &&
-            frame.src &&
-            frame.src !== "about:blank" &&
-            frame.src !== "javascript:undefined" &&
+            !srcAllowResultP.includes(src) &&
+            src &&
+            src !== "about:blank" &&
+            src !== "javascript:undefined" &&
             !frame.classList.contains(rid)
           ) {
             //Give it unique ID
@@ -81,16 +82,16 @@ function iframeFinder() {
 
             //Format URL (add elipses if too long)
             let warningURL;
-            if (frame.src.length > 50) {
-              warningURL = frame.src.substring(0, 50) + "...";
+            if (src.length > 50) {
+              warningURL = src.substring(0, 50) + "...";
             } else {
-              warningURL = frame.src;
+              warningURL = src;
             }
 
             //Create URL element
             let urlElement = document.createElement("span");
             urlElement.textContent = warningURL;
-            urlElement.title = frame.src
+            urlElement.title = src
 
             let warningAccept = document.createElement("button");
             let warningNever = document.createElement("button");
@@ -214,13 +215,13 @@ function iframeFinder() {
               //Add src URL to whitelist array
               if (srcAllowResultP) {
                 //Check if entry for frame src exists
-                if (!srcAllowResultP.includes(frame.src)) {
-                  srcAllowResultP.push(frame.src);
+                if (!srcAllowResultP.includes(src)) {
+                  srcAllowResultP.push(src);
                   browser.storage.local.set({ srcAllow: srcAllowResultP });
                 }
               } else {
                 //Create array and push frame src to it
-                let srcAllowArray = [frame.src];
+                let srcAllowArray = [src];
                 browser.storage.local.set({ srcAllow: srcAllowArray });
               }
             });
