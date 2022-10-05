@@ -43,9 +43,13 @@ function iframeFinder() {
           ) {
             //Give it unique ID
             frame.setAttribute("class", rid);
-
+            
             //Create Warning Div
+            let warningHost = document.createElement("div");
+            let warningDOM = warningHost.attachShadow({mode: 'closed'});
             let warning = document.createElement("div");
+            warningDOM.appendChild(warning);
+            
             warning.classList.add("warning-" + rid);
 
             //iFrame Styles
@@ -194,7 +198,7 @@ function iframeFinder() {
             warning.appendChild(warningNever);
 
             //Append warning to document
-            document.body.appendChild(warning);
+            document.body.appendChild(warningHost);
 
             //Event listener for Accept warning button
             warningAccept.addEventListener("click", (e) => {
