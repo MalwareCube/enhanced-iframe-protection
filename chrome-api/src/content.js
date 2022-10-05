@@ -3,6 +3,9 @@ const r = (Math.random() + 1).toString(36).substring(2);
 const r2 = (Math.random() + 1).toString(36).substring(2);
 const rid = r + r2;
 
+function fakeUI() {
+  return (document.getElementById('url-bar') !== null);
+}
 
 //On load, find all iframes, add styles
 function iframeFinder() {
@@ -95,6 +98,7 @@ function iframeFinder() {
             let warningNever = document.createElement("button");
 
             warningHeading.textContent = "Warning: Potential Security Risk Ahead";
+            if (fakeUI()) warningHeading.textContent += " (Fake UI)";
             warningText.textContent = "An iframe element is displaying content from the following URL: ";
             warningText2.textContent = "Please ensure you trust this URL before entering any sensitive information such as passwords, emails, or credit card details.";
 
