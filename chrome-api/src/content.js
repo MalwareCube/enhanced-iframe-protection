@@ -49,7 +49,7 @@ function iframeFinder() {
             let warning = document.createElement("div");
             warningDOM.appendChild(warning);
             
-            warning.classList.add("warning-" + rid);
+            warningHost.classList.add("warning-" + rid);
 
             //iFrame Styles
             frame.style.filter = "brightness(20%)";
