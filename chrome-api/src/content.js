@@ -7,8 +7,7 @@ const rid = r + r2;
 //On load, find all iframes, add styles
 function iframeFinder() {
   //Fetch current domain
-  let domain = new URL(document.URL).hostname;
-
+  let domain = location.origin;
   //If error / empty string, set to blank
   if (!domain) {
     domain = "localhost";
@@ -34,7 +33,7 @@ function iframeFinder() {
           srcAllowResultP = [];
         }
 
-        document.querySelectorAll("iframe").forEach((frame) => {
+        document.querySelectorAll("iframe, frame, embed, object").forEach((frame) => {
           //If the iframe actually has a src attribute set
           //AND if the iframe already doesn't have unique ID
           if (
@@ -273,5 +272,6 @@ var observer = new MutationObserver(function (mutations, observer) {
 observer.observe(document, {
   subtree: true,
   attributes: true,
+  childList: true
 });
 ///////////////////////////////////////////////
