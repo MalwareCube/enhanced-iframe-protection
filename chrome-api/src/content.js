@@ -67,7 +67,7 @@ function iframeFinder() {
             warning.style.width = "100%";
             warning.style.padding = "20px";
             warning.style.margin = "0px";
-            warning.style.zIndex = "9999";
+            warning.style.zIndex = "2147483647";
 
             warning.style.position = "fixed";
             warning.style.bottom = "0";
